@@ -17,9 +17,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      
+    - name: Login to DockerHub
+      run: echo dckr_pat_Toirv2ZpdDY1M2xLIDkkt9bsvZg | docker login -u "mc220517285" --password-stdin
 
-    - name: Build Docker Image
+    - name: Build and Push Docker image
       run: |
-        echo "${{ secrets.DOCKERPW }}" | docker login -u "mc220517285" --password-stdin
         docker image build -t mc220517285/flaskapp:v1 .
         docker push mc220517285/flaskapp:v1
