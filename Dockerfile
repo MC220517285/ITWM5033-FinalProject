@@ -6,7 +6,7 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-COPY ..
+COPY . /app
 
 LABEL maintainer="Welcome to UNITAR <mc220517285@student.unitar.my>" \
       version="1.0"
