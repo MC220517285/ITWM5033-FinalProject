@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Python Application
 
 on:
   push:
@@ -17,16 +17,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    
-    - name: Set up environment
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y [Your dependencies here]
 
     - name: Build Docker Image
       run: |
-        docker build -t myapp:latest .
-
-    - name: Run Tests
-      run: |
-        docker run myapp:latest python -m unittest discover
+        echo "${{ secrets.DOCKERPW }}" | docker login -u "mc220517285" --password-stdin
+        docker image build -t mc220517285/flaskapp:v1 .
+        docker push mc220517285/flaskapp:v1
